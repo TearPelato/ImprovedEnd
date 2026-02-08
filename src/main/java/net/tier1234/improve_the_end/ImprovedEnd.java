@@ -10,6 +10,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.tier1234.improve_the_end.init.ModBlocks;
+import net.tier1234.improve_the_end.init.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -19,6 +21,9 @@ public class ImprovedEnd {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public ImprovedEnd(IEventBus modEventBus, ModContainer modContainer) {
+
+        ModItems.init(modEventBus);
+        ModBlocks.init(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);
