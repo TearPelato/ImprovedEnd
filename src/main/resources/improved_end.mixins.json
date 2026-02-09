@@ -6,6 +6,8 @@
   "mixins": [
   ],
   "client": [
+    "accessor.CreativeModeInventoryScreenAccessor",
+    "accessor.ScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

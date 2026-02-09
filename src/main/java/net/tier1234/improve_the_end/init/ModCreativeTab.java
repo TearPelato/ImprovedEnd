@@ -7,19 +7,26 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tier1234.improve_the_end.Constants;
+import net.tier1234.improve_the_end.creative_tab.bundled.BundledTabs;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModCreativeTab {
 public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
 
 public static final Supplier<CreativeModeTab> MAIN_TAB = CREATIVE_TAB.register("bismuth_items_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.JACARANDA_LOG.get()))
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP,1)
+                    .withSearchBar()
+                    .icon(() -> new ItemStack(ModBlocks.JACARANDA_LOG.get()))
                     .title(Component.translatable("itemGroup."+ Constants.MOD_ID))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModBlocks.JACARANDA_LOG.get());
-                        output.accept(ModBlocks.STRIPPED_JACARANDA_LOG.get());
-                        output.accept(ModBlocks.JACARANDA_PLANKS.get());
+                    .displayItems((parameters, output) -> {
+                        List<BundledTabs> filters = ModBundledTabs.getFilters();
+                        Collections.reverse(filters);
+                        filters.stream()
+                                .flatMap(filter -> filter.getDisplayItems().stream())
+                                .forEach(output::accept);
                     }).build());
 
 
