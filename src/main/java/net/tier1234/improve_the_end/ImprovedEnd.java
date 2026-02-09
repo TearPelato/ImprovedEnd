@@ -11,6 +11,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.tier1234.improve_the_end.init.ModBlocks;
+import net.tier1234.improve_the_end.init.ModCreativeTab;
 import net.tier1234.improve_the_end.init.ModItems;
 import org.slf4j.Logger;
 
@@ -24,6 +25,7 @@ public class ImprovedEnd {
 
         ModItems.init(modEventBus);
         ModBlocks.init(modEventBus);
+        ModCreativeTab.init(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);
